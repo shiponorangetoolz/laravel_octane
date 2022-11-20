@@ -4,11 +4,13 @@ namespace App\Helper;
 
 use App\Models\Contact;
 use App\Models\User;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Log;
 
 
 class Helpers
 {
-    public static function runner(array $globalContact = [], array $items = [], $batch): void
+    public static function runner(array $globalContact = [], array $items = [], $batch)
     {
         $insertData = [];
 
@@ -22,7 +24,8 @@ class Helpers
                 $name = $user->name;
             }
 
-            if (is_null(Contact::where(['contact' => $contact])->first())) {
+            $db = new DbHelpers();
+            if ($db->chekcDuplicate($contact)) {
                 $insertData[] = [
                     'uid' => "uid" . $item,
                     'contact' => $contact
@@ -31,6 +34,8 @@ class Helpers
 
         }
 
-        Contact::insert($insertData);
+        return [Carbon::now()->format('H:i:s')];
+
+
     }
 }

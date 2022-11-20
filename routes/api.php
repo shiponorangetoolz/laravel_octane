@@ -28,8 +28,13 @@ Route::get('test', function (){
 
 Route::get('test/one', function (){
 //    \App\Models\Post::factory()->count(1000)->create();
-    \App\Models\User::factory()->count(1000)->create();
-    echo 'Ok Done';
+//    \App\Models\User::factory()->count(1000)->create();
+//    echo 'Ok Done';
+});
+
+Route::get('phpinfo', function (){
+    $object = new stdClass;
+    var_dump($object::class); // "stdClass"
 });
 
 Route::get('co', function (){

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Helper\Helpers;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Log;
 use Laravel\Octane\Facades\Octane;
 
 class PostController extends Controller
@@ -12,58 +13,48 @@ class PostController extends Controller
     {
         $itemArray = [];
         $globalContact = [];
+        $insertData = null;
+        $resultOne = [];
+        $resultTwo = [];
 
-        echo "Start" . Carbon::now()->format('Y-m-d H:i:s');
-        echo "\n";
-        foreach (range(1, 1000010) as $data) {
+
+//        echo "Start" . Carbon::now()->format('Y-m-d H:i:s');
+//        echo "\n";
+        foreach (range(1, 1302000) as $key => $data) {
 
             $itemArray[] = $data;
 
-            if (count($itemArray) > 5999) {
-                echo "Loop data ". $data  ;
-                echo "\n";
-                $cool = array_chunk($itemArray, 3000);
+            if (count($itemArray) > 6999) {
+//                echo "Loop data ". $data  ;
+//                echo "\n";
+                $cool = array_chunk($itemArray, 3500);
                 $first = $cool[0] ?? [];
                 $second = $cool[1] ?? [];
-//                $three = $cool[2] ?? [];
 
-                Octane::concurrently([
+                Log::info('step ---- ' . $key ,[Carbon::now()->format('H:i:s')]);
+                [$resultOne, $resultTwo] = Octane::concurrently([
                     function () use (&$globalContact, $first) {
-                        Helpers::runner($globalContact, $first, "First ");
+                        return Helpers::runner($globalContact, $first, "First ");
                     },
 
                     function () use (&$globalContact, $second) {
-                        Helpers::runner($globalContact, $second, "Second");
+                        return Helpers::runner($globalContact, $second, "Second");
                     },
-//                    function () use (&$globalContact, $three) {
-//                        Helpers::runner($globalContact, $three, "three");
-//                    }
                 ], 100000);
+                Log::info('callback return',[$resultOne, $resultTwo]);
+
+                Log::info('step ##### ',[Carbon::now()->format('H:i:s')]);
+
                 $itemArray = [];
             }
         }
 
+        Log::info('Last callback ',[$resultOne, $resultTwo]);
+
+
         echo "\n ######################################################## \n";
         echo "end " . Carbon::now()->format('Y-m-d H:i:s');
 
-
-//        Octane::concurrently([
-//            function () {
-//                $users = User::all();
-//                foreach ($users as $user) {
-//                    $user->update(['status' => 1]);
-//                    Log::info('User Update: ', [Carbon::now()->format('Y-m-s')]);
-//                }
-//
-//            },
-//            function () {
-//                $posts = Post::all();
-//                foreach ($posts as $post) {
-//                    $post->update(['status' => 1]);
-//                    Log::info('Post Update: ', [Carbon::now()->format('Y-m-s')]);
-//                }
-//            },
-//        ]);
     }
 
     public function printOne()
