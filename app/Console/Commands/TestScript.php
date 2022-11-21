@@ -3,6 +3,8 @@
 namespace App\Console\Commands;
 
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\PostTwoController;
+use Fiber;
 use Illuminate\Console\Command;
 
 class TestScript extends Command
@@ -21,6 +23,30 @@ class TestScript extends Command
      */
     protected $description = 'Command description';
 
+    public function testFiber()
+    {
+        $fiber = new Fiber(function (): void {
+
+            $value = Fiber::suspend("yyurutruytutrutrur");
+
+            var_dump($value);
+        });
+
+        $d = $fiber->start();
+        echo $d;
+
+        echo $fiber->isStarted();
+
+
+        $fiber->resume(range(1, 20));
+
+        var_dump($fiber->getReturn());
+
+
+        echo "final end  \n";
+
+    }
+
     /**
      * Execute the console command.
      *
@@ -28,7 +54,9 @@ class TestScript extends Command
      */
     public function handle()
     {
+
         PostController::index();
+//        PostTwoController::processFile();
         return Command::SUCCESS;
     }
 }

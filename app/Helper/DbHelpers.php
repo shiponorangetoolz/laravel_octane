@@ -4,6 +4,7 @@ namespace App\Helper;
 
 use App\Models\Contact;
 use App\Models\User;
+use Illuminate\Support\Facades\App;
 
 
 class DbHelpers
@@ -13,8 +14,8 @@ class DbHelpers
         Contact::insert($insertData);
     }
 
-    public function chekcDuplicate($contact)
+    public function checkDuplicate($contact)
     {
-        return is_null(Contact::where(['contact' => $contact])->first());
+        return App::make(Contact::class)->where(['contact' => $contact])->first();
     }
 }

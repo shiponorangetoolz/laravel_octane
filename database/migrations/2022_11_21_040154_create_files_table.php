@@ -13,9 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('contacts', function (Blueprint $table) {
-            $table->string('uid')->primary();
-            $table->string('contact')->index();
+        Schema::create('files', function (Blueprint $table) {
+            $table->id();
+            $table->string('file_name');
+            $table->string('file_path');
+            $table->tinyInteger('status')->default(0);
             $table->timestamps();
         });
     }
@@ -27,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('contacts');
+        Schema::dropIfExists('files');
     }
 };
