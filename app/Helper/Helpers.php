@@ -6,6 +6,7 @@ use App\Models\Contact;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
 
@@ -25,24 +26,14 @@ class Helpers
                 $name = $user->name;
             }
 
-//            $cURLConnection = curl_init();
-//
-//            curl_setopt($cURLConnection, CURLOPT_URL, 'https://jsonplaceholder.typicode.com/posts/1');
-//            curl_setopt($cURLConnection, CURLOPT_RETURNTRANSFER, true);
-//
-//            $phoneList = curl_exec($cURLConnection);
-//            curl_close($cURLConnection);
-//
-//            $jsonArrayResponse = json_decode($phoneList);
-//
-//            if (!empty($jsonArrayResponse)) {
-//                echo 'Data found';
-//            } else {
-//                echo 'Data not found';
-//            }
-
             $db = new DbHelpers();
+            $db->curlRequest();
+            sleep(1);
+
             $tt = $db->checkDuplicate($contact);
+
+            $dbconnect = DB::connection()->getPDO();
+            $dbname = DB::connection()->getDatabaseName();
 
             if (is_null($tt)) {
                 $insertData[] = [
@@ -53,6 +44,8 @@ class Helpers
 
         }
 
+        Log::info('DB::$insertData ',[$insertData]);
+        Log::info('Data insert');
         $db = new DbHelpers();
         $db->insert($insertData);
 

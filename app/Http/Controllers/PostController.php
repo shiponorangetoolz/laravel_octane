@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Helper\Helpers;
+use App\Helper\Status;
 use App\Imports\FileImport;
 use App\Models\Contact;
 use Carbon\Carbon;
@@ -79,7 +80,7 @@ class PostController extends Controller
                         Helpers::runner($globalContact, $second, "Second");
                     },
 
-                ], 600000);
+                ], 900000);
 
                 $itemArray = [];
             }
@@ -91,15 +92,27 @@ class PostController extends Controller
         return true;
     }
 
-    public function printOne()
+    public static function testMethod()
     {
-        sleep(2);
-        echo Carbon::now()->format('Y-m-s') . '<br>';
-    }
 
-    public function printTwo()
-    {
-        sleep(2);
-        echo Carbon::now()->format('Y-m-s');
+        $name = Status::from(2)->name;
+        $color = Status::from(2)->color();
+        $value = Status::from(2)->value;
+
+//        $typeValue = Status::from(6)->type();
+//        $typeValue = Status::tryFrom(6)->type();
+        $typeValue = Status::cases();
+
+
+        $statusCode = 400;
+
+        $message = match ($statusCode) {
+            200, 300 => null,
+            400 => 'not found',
+            500 => 'server error',
+            default => 'unknown status code',
+        };
+
+        dd($message);
     }
 }

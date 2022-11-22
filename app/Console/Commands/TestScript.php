@@ -2,6 +2,8 @@
 
 namespace App\Console\Commands;
 
+use App\Helper\Poem\GeneratorClass;
+use App\Helper\Poem\RandomPoemGenerator;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\PostTwoController;
 use Fiber;
@@ -40,8 +42,6 @@ class TestScript extends Command
 
         $fiber->resume(range(1, 20));
 
-        var_dump($fiber->getReturn());
-
 
         echo "final end  \n";
 
@@ -54,7 +54,10 @@ class TestScript extends Command
      */
     public function handle()
     {
+        $gn = new RandomPoemGenerator();
+        $gn->data();
 
+//        GeneratorClass::generatorPoem();
         PostController::index();
 //        PostTwoController::processFile();
         return Command::SUCCESS;
