@@ -4,14 +4,25 @@ namespace App\Helper;
 
 use App\Models\Contact;
 use App\Models\User;
+use Exception;
+use GuzzleHttp\HandlerStack;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Log;
 
+
+use GuzzleHttp\Promise\Coroutine;
+use Swoole\Constant;
+use GuzzleHttp\Client;
+
+use Yurun\Util\Swoole\Guzzle\SwooleHandler;
+use function Swoole\Coroutine\go;
+use function Swoole\Coroutine\run;
 
 class DbHelpers
 {
     public function insert(array $insertData)
     {
+        Log::info('$insertData data count',[count($insertData)]);
         Contact::insert($insertData);
     }
 
@@ -22,21 +33,12 @@ class DbHelpers
 
     public function curlRequest()
     {
-        $cURLConnection = curl_init();
-
-        curl_setopt($cURLConnection, CURLOPT_URL, 'https://jsonplaceholder.typicode.com/posts/1');
-        curl_setopt($cURLConnection, CURLOPT_RETURNTRANSFER, true);
-
-        $phoneList = curl_exec($cURLConnection);
-        curl_close($cURLConnection);
-
-        $jsonArrayResponse = json_decode($phoneList);
-
-        if ($jsonArrayResponse) {
-            Log::info('Data Found');
-        }
-
-        return true;
-
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, 'https://jsonplaceholder.typicode.com/posts/1');
+        curl_setopt($ch, CURLOPT_HEADER, false);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_exec($ch);
+        $statusCode = curl_getinfo($ch, CURLINFO_RESPONSE_CODE);
+        curl_close($ch);
     }
 }
