@@ -7,6 +7,7 @@ use App\Models\User;
 use Exception;
 use GuzzleHttp\HandlerStack;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 
 
@@ -22,7 +23,6 @@ class DbHelpers
 {
     public function insert(array $insertData)
     {
-        Log::info('$insertData data count',[count($insertData)]);
         Contact::insert($insertData);
     }
 
@@ -31,14 +31,18 @@ class DbHelpers
         return App::make(Contact::class)->where(['contact' => $contact])->first();
     }
 
-    public function curlRequest()
+    public static function curlRequest()
     {
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, 'https://jsonplaceholder.typicode.com/posts/1');
-        curl_setopt($ch, CURLOPT_HEADER, false);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-        curl_exec($ch);
-        $statusCode = curl_getinfo($ch, CURLINFO_RESPONSE_CODE);
-        curl_close($ch);
+//        $ch = curl_init();
+//        curl_setopt($ch, CURLOPT_URL, 'https://jsonplaceholder.typicode.com/posts/1');
+//        curl_setopt($ch, CURLOPT_HEADER, false);
+//        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+//        $data = curl_exec($ch);
+//        $statusCode = curl_getinfo($ch, CURLINFO_RESPONSE_CODE);
+//        curl_close($ch);
+
+        Http::get('https://jsonplaceholder.typicode.com/posts/1');
+        return true;
     }
+
 }

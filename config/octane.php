@@ -167,6 +167,10 @@ return [
             'name' => 'string:1000',
             'votes' => 'int',
         ],
+
+        'test:1000' => [
+            'contact' => 'int',
+        ],
     ],
 
     /*

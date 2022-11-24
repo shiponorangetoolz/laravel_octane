@@ -28,7 +28,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         DB::whenQueryingForLongerThan(500, function (Connection $connection, QueryExecuted $event) {
-            Log::info('$connection,$event', [$connection, $event]);
+//            Log::info('$connection,$event', [$connection, $event]);
         });
     }
 }

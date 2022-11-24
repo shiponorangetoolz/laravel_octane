@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "32455800f3e341aadcd8884f702bcffd",
+    "content-hash": "a46237c20806862333964a6403bdfe1e",
     "packages": [
         {
             "name": "brick/math",
@@ -6685,6 +6685,50 @@
                 "source": "https://github.com/webmozarts/assert/tree/1.11.0"
             },
             "time": "2022-06-03T18:03:27+00:00"
+        },
+        {
+            "name": "yidas/worker-dispatcher",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/yidas/php-worker-dispatcher.git",
+                "reference": "4339c7a733603a660c54b945d212926e84bd614c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/yidas/php-worker-dispatcher/zipball/4339c7a733603a660c54b945d212926e84bd614c",
+                "reference": "4339c7a733603a660c54b945d212926e84bd614c",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4"
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "src/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "PHP multi-processing task dispatcher with managing workers",
+            "homepage": "https://github.com/yidas/php-worker-dispatcher",
+            "keywords": [
+                "multiprocessing",
+                "pcntl",
+                "php",
+                "task",
+                "worker",
+                "worker-dispatcher",
+                "worker-manage"
+            ],
+            "support": {
+                "issues": "https://github.com/yidas/php-worker-dispatcher/issues",
+                "source": "https://github.com/yidas/php-worker-dispatcher"
+            },
+            "time": "2020-07-27T07:35:22+00:00"
         },
         {
             "name": "yurunsoft/composer-include-files",

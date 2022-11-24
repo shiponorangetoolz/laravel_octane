@@ -32,9 +32,9 @@ use function Swoole\Coroutine\run;
 class SwooleHelper
 {
 
-    public function curTest()
+    public function curTest($batch)
     {
-        Coroutine::set([Constant::OPTION_HOOK_FLAGS => SWOOLE_HOOK_CURL]);
+        Coroutine::set([Constant::OPTION_HOOK_FLAGS => SWOOLE_HOOK_ALL]);
         Coroutine::set([Constant::OPTION_TASK_ENABLE_COROUTINE => true]);
 
         $ch = curl_init();
@@ -45,7 +45,7 @@ class SwooleHelper
         $statusCode = curl_getinfo($ch, CURLINFO_RESPONSE_CODE);
         curl_close($ch);
 
-        Log::info('$statusCode',[$statusCode]);
+        Log::info('$statusCode swoole',[$statusCode, $batch]);
 
 //        if ($statusCode !== 234) {
 //            throw new Exception('Status code returned from the built-in HTTP/1 server should be 234.');

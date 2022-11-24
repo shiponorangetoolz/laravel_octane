@@ -7,12 +7,13 @@ use App\Helper\Status;
 use App\Imports\FileImport;
 use App\Models\Contact;
 use Carbon\Carbon;
-use GuzzleHttp\Client;
 use GuzzleHttp\HandlerStack;
+use Illuminate\Http\Client\Pool;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 use Laravel\Octane\Events\TaskTerminated;
 use Laravel\Octane\Facades\Octane;
@@ -23,7 +24,6 @@ use Laravel\Octane\Swoole\SwooleHttpTaskDispatcher;
 use Maatwebsite\Excel\Facades\Excel;
 use SebastianBergmann\Environment\Runtime;
 use Swoole\Coroutine;
-use Yurun\Util\Swoole\Guzzle\SwooleHandler;
 
 class PostController extends Controller
 {
@@ -47,7 +47,7 @@ class PostController extends Controller
             if (count($itemsArray) > 6999) {
 
                 // Split 7000 rows in 2 array and provide in multiple workers.
-                $chunkDataForConcurrent = array_chunk($itemArray, 3000);
+                $chunkDataForConcurrent = array_chunk($itemArray, 1000);
                 $firstWorkerData = $chunkDataForConcurrent[0] ?? [];
                 $secondWorkerData = $chunkDataForConcurrent[1] ?? [];
 
@@ -62,6 +62,63 @@ class PostController extends Controller
                     },
 
                 ], 900000); // Workers will auto close after 900000 millisecond if no process found
+
+                $itemArray = [];
+            }
+        }
+
+        echo "End" . Carbon::now()->format('Y-m-d H:i:s');
+        echo "\n";
+
+        return true;
+    }
+
+    public static function dispatcher()
+    {
+        $itemArray = [];
+        $globalContact = [1, 2, 3];
+
+
+        echo "Start" . Carbon::now()->format('Y-m-d H:i:s');
+        echo "\n";
+
+//        120000 , 29999 , 3000
+
+        foreach (range(1, 2000000) as $data) {
+            $itemArray[] = $data;
+
+            if (count($itemArray) > 29999) {
+                echo "End" . " " . count($itemArray);
+                echo "\n";
+
+                // Split 7000 rows in 2 array and provide in multiple workers.
+                $chunkDataForConcurrent = array_chunk($itemArray, 5000);
+
+                $one = $chunkDataForConcurrent[0] ?? [];
+                $two = $chunkDataForConcurrent[1] ?? [];
+                $three = $chunkDataForConcurrent[2] ?? [];
+                $four = $chunkDataForConcurrent[3] ?? [];
+                $five = $chunkDataForConcurrent[4] ?? [];
+                $six = $chunkDataForConcurrent[5] ?? [];
+
+                \yidas\WorkerDispatcher::run([
+                    'debug' => true,
+                    'workers' => 3,
+                    'config' => ['uri' => "/v1/resource"],
+                    'tasks' => [
+                        $one,
+                        $two,
+                        $three,
+                        $four,
+                        $five,
+                        $six
+                    ],
+                    'callbacks' => [
+                        'task' => function ($config, $workerId, $task) use ($globalContact) {
+                            Helpers::runner($globalContact, $task, "First Worker");
+                        },
+                    ],
+                ]);
 
                 $itemArray = [];
             }

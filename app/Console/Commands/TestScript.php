@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Helper\DbHelpers;
 use App\Http\Controllers\PostController;
 use Illuminate\Console\Command;
 
@@ -28,7 +29,8 @@ class TestScript extends Command
      */
     public function handle()
     {
-        PostController::index();
+//        PostController::index();
+        PostController::dispatcher();
         return Command::SUCCESS;
     }
 }
