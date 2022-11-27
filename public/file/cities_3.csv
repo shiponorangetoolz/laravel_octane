@@ -1,0 +1,129 @@
+LatD,LatM,LatS,NS,LonD,500,LonS,EW,City,State
+41,5,59,N,80,501,0,W,Youngstown, OH
+42,52,48,N,97,502,23,W,Yankton, SD
+46,35,59,N,120,503,36,W,Yakima, WA
+42,16,12,N,71,504,0,W,Worcester, MA
+43,37,48,N,89,505,11,W,Wisconsin Dells, WI
+36,5,59,N,80,506,0,W,Winston-Salem, NC
+49,52,48,N,97,507,0,W,Winnipeg, MB
+39,11,23,N,78,508,36,W,Winchester, VA
+34,14,24,N,77,509,11,W,Wilmington, NC
+39,45,0,N,75,510,0,W,Wilmington, DE
+48,9,0,N,103,511,12,W,Williston, ND
+41,15,0,N,77,512,0,W,Williamsport, PA
+37,40,48,N,82,513,47,W,Williamson, WV
+33,54,0,N,98,514,23,W,Wichita Falls, TX
+37,41,23,N,97,515,23,W,Wichita, KS
+40,4,11,N,80,516,12,W,Wheeling, WV
+26,43,11,N,80,517,0,W,West Palm Beach, FL
+47,25,11,N,120,518,11,W,Wenatchee, WA
+41,25,11,N,122,519,23,W,Weed, CA
+31,13,11,N,82,520,59,W,Waycross, GA
+44,57,35,N,89,521,23,W,Wausau, WI
+42,21,36,N,87,522,48,W,Waukegan, IL
+44,54,0,N,97,523,36,W,Watertown, SD
+43,58,47,N,75,524,11,W,Watertown, NY
+42,30,0,N,92,525,23,W,Waterloo, IA
+41,32,59,N,73,526,0,W,Waterbury, CT
+38,53,23,N,77,527,47,W,Washington, DC
+41,50,59,N,79,528,23,W,Warren, PA
+46,4,11,N,118,529,48,W,Walla Walla, WA
+31,32,59,N,97,530,23,W,Waco, TX
+38,40,48,N,87,531,47,W,Vincennes, IN
+28,48,35,N,97,532,36,W,Victoria, TX
+32,20,59,N,90,533,47,W,Vicksburg, MS
+49,16,12,N,123,534,12,W,Vancouver, BC
+46,55,11,N,98,535,36,W,Valley City, ND
+30,49,47,N,83,536,47,W,Valdosta, GA
+43,6,36,N,75,537,48,W,Utica, NY
+39,54,0,N,79,538,48,W,Uniontown, PA
+32,20,59,N,95,539,0,W,Tyler, TX
+42,33,36,N,114,540,12,W,Twin Falls, ID
+33,12,35,N,87,541,11,W,Tuscaloosa, AL
+34,15,35,N,88,542,35,W,Tupelo, MS
+36,9,35,N,95,543,36,W,Tulsa, OK
+32,13,12,N,110,544,12,W,Tucson, AZ
+37,10,11,N,104,545,36,W,Trinidad, CO
+40,13,47,N,74,546,11,W,Trenton, NJ
+44,45,35,N,85,547,47,W,Traverse City, MI
+43,39,0,N,79,548,47,W,Toronto, ON
+39,2,59,N,95,549,11,W,Topeka, KS
+41,39,0,N,83,550,24,W,Toledo, OH
+33,25,48,N,94,551,0,W,Texarkana, TX
+39,28,12,N,87,552,36,W,Terre Haute, IN
+27,57,0,N,82,553,59,W,Tampa, FL
+30,27,0,N,84,554,47,W,Tallahassee, FL
+47,14,24,N,122,555,48,W,Tacoma, WA
+43,2,59,N,76,556,0,W,Syracuse, NY
+32,35,59,N,82,557,23,W,Swainsboro, GA
+33,55,11,N,80,558,59,W,Sumter, SC
+40,59,24,N,75,559,24,W,Stroudsburg, PA
+37,57,35,N,121,560,24,W,Stockton, CA
+44,31,12,N,89,561,11,W,Stevens Point, WI
+40,21,36,N,80,562,12,W,Steubenville, OH
+40,37,11,N,103,563,12,W,Sterling, CO
+38,9,0,N,79,564,11,W,Staunton, VA
+39,55,11,N,83,565,35,W,Springfield, OH
+37,13,12,N,93,566,24,W,Springfield, MO
+42,5,59,N,72,567,23,W,Springfield, MA
+39,47,59,N,89,568,0,W,Springfield, IL
+47,40,11,N,117,569,36,W,Spokane, WA
+41,40,48,N,86,570,0,W,South Bend, IN
+43,32,24,N,96,571,48,W,Sioux Falls, SD
+42,29,24,N,96,572,23,W,Sioux City, IA
+32,30,35,N,93,573,0,W,Shreveport, LA
+33,38,23,N,96,574,36,W,Sherman, TX
+44,47,59,N,106,575,35,W,Sheridan, WY
+35,13,47,N,96,576,48,W,Seminole, OK
+32,25,11,N,87,577,11,W,Selma, AL
+38,42,35,N,93,578,48,W,Sedalia, MO
+47,35,59,N,122,579,48,W,Seattle, WA
+41,24,35,N,75,580,11,W,Scranton, PA
+41,52,11,N,103,581,36,W,Scottsbluff, NB
+42,49,11,N,73,582,59,W,Schenectady, NY
+32,4,48,N,81,583,23,W,Savannah, GA
+46,29,24,N,84,584,59,W,Sault Sainte Marie, MI
+27,20,24,N,82,585,47,W,Sarasota, FL
+38,26,23,N,122,586,12,W,Santa Rosa, CA
+35,40,48,N,105,587,59,W,Santa Fe, NM
+34,25,11,N,119,588,59,W,Santa Barbara, CA
+33,45,35,N,117,589,12,W,Santa Ana, CA
+37,20,24,N,121,590,47,W,San Jose, CA
+37,46,47,N,122,591,11,W,San Francisco, CA
+41,27,0,N,82,592,35,W,Sandusky, OH
+32,42,35,N,117,593,0,W,San Diego, CA
+34,6,36,N,117,594,35,W,San Bernardino, CA
+29,25,12,N,98,595,0,W,San Antonio, TX
+31,27,35,N,100,596,24,W,San Angelo, TX
+40,45,35,N,111,597,47,W,Salt Lake City, UT
+38,22,11,N,75,598,59,W,Salisbury, MD
+36,40,11,N,121,599,0,W,Salinas, CA
+38,50,24,N,97,600,36,W,Salina, KS
+38,31,47,N,106,601,0,W,Salida, CO
+44,56,23,N,123,602,47,W,Salem, OR
+44,57,0,N,93,603,59,W,Saint Paul, MN
+38,37,11,N,90,604,24,W,Saint Louis, MO
+39,46,12,N,94,605,23,W,Saint Joseph, MO
+42,5,59,N,86,606,48,W,Saint Joseph, MI
+44,25,11,N,72,607,11,W,Saint Johnsbury, VT
+45,34,11,N,94,608,11,W,Saint Cloud, MN
+29,53,23,N,81,609,11,W,Saint Augustine, FL
+43,25,48,N,83,610,24,W,Saginaw, MI
+38,35,24,N,121,611,23,W,Sacramento, CA
+43,36,36,N,72,612,12,W,Rutland, VT
+33,24,0,N,104,613,47,W,Roswell, NM
+35,56,23,N,77,614,0,W,Rocky Mount, NC
+41,35,24,N,109,615,48,W,Rock Springs, WY
+42,16,12,N,89,616,59,W,Rockford, IL
+43,9,35,N,77,617,36,W,Rochester, NY
+44,1,12,N,92,618,35,W,Rochester, MN
+37,16,12,N,79,619,24,W,Roanoke, VA
+37,32,24,N,77,620,59,W,Richmond, VA
+39,49,48,N,84,621,23,W,Richmond, IN
+38,46,12,N,112,622,23,W,Richfield, UT
+45,38,23,N,89,623,11,W,Rhinelander, WI
+39,31,12,N,119,624,35,W,Reno, NV
+50,25,11,N,104,625,0,W,Regina, SA
+40,10,48,N,122,626,23,W,Red Bluff, CA
+40,19,48,N,75,627,48,W,Reading, PA
+41,9,35,N,81,628,23,W,Ravenna, OH 

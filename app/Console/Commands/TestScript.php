@@ -31,6 +31,7 @@ class TestScript extends Command
     {
 //        PostController::index();
         PostController::dispatcher();
+//        PostController::newDispatcher();
         return Command::SUCCESS;
     }
 }

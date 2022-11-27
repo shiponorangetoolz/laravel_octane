@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('contacts', function (Blueprint $table) {
             $table->string('uid')->primary();
-            $table->string('contact')->index();
+            $table->string('contact')->index()->nullable();
             $table->timestamps();
         });
     }

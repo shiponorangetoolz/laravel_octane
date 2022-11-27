@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Helper\FileHelpers;
 use App\Helper\Helpers;
 use App\Helper\Status;
+use App\Helper\WorkerDispatcher;
 use App\Imports\FileImport;
 use App\Models\Contact;
 use Carbon\Carbon;
+use Fiber;
 use GuzzleHttp\HandlerStack;
 use Illuminate\Http\Client\Pool;
 use Illuminate\Support\Facades\Cache;
@@ -88,7 +91,7 @@ class PostController extends Controller
             $itemArray[] = $data;
 
             if (count($itemArray) > 29999) {
-                echo "End" . " " . count($itemArray);
+                echo "Start worker file access" . " ";
                 echo "\n";
 
                 // Split 7000 rows in 2 array and provide in multiple workers.
@@ -101,9 +104,9 @@ class PostController extends Controller
                 $five = $chunkDataForConcurrent[4] ?? [];
                 $six = $chunkDataForConcurrent[5] ?? [];
 
-                \yidas\WorkerDispatcher::run([
+                WorkerDispatcher::run([
                     'debug' => true,
-                    'workers' => 3,
+                    'workers' => 4,
                     'config' => ['uri' => "/v1/resource"],
                     'tasks' => [
                         $one,
@@ -115,13 +118,72 @@ class PostController extends Controller
                     ],
                     'callbacks' => [
                         'task' => function ($config, $workerId, $task) use ($globalContact) {
-                            Helpers::runner($globalContact, $task, "First Worker");
+                            $res = Helpers::runner($globalContact, $task, "First Worker");
+                            Log::info('$res data', [$res]);
                         },
                     ],
                 ]);
 
                 $itemArray = [];
+
+                echo "End worker file access" . " ";
+                echo "\n";
             }
+        }
+
+        echo "End" . Carbon::now()->format('Y-m-d H:i:s');
+        echo "\n";
+
+        return true;
+    }
+
+    public static function newDispatcher()
+    {
+
+//        $files = array_chunk(File::files(public_path('file')), 3);
+        $files = File::files(public_path('newFile'));
+
+//        $fileOne = $files[0][0] ?? [];
+//        $fileTwo = $files[0][1] ?? [];
+//        $fileThree = $files[0][2] ?? [];
+
+
+//        $fileArray = Excel::toArray(new FileImport, $fileOne);
+
+        $itemArray = [];
+        $globalContact = [1, 2, 3];
+
+
+        echo "Start" . Carbon::now()->format('Y-m-d H:i:s');
+        echo "\n";
+
+//        120000 , 29999 , 3000
+
+        foreach ($files as $data) {
+            $itemArray[] = $data;
+
+            echo "Start worker file access" . " ";
+            echo "\n";
+
+            WorkerDispatcher::run([
+                'debug' => true,
+                'workers' => 1,
+                'config' => ['uri' => "/v1/resource"],
+                'tasks' => [
+                    $data
+                ],
+                'callbacks' => [
+                    'task' => function ($config, $workerId, $task) use ($globalContact) {
+                        FileHelpers::runner($globalContact, $task, "First Worker");
+                    },
+                ],
+            ]);
+
+            $itemArray = [];
+
+            echo "End worker file access" . " ";
+            echo "\n";
+
         }
 
         echo "End" . Carbon::now()->format('Y-m-d H:i:s');

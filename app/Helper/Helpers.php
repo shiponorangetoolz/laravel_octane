@@ -12,7 +12,41 @@ use Laravel\Octane\Facades\Octane;
 
 class Helpers
 {
-    public static function runner(array $globalContact = [], array $itemsData = [], $batch)
+
+    public static function runner(array $globalContact = [], array $items = [], $batch)
+    {
+
+        $insertData = [];
+
+        foreach ($items as $key => $item) {
+            $contact = 100000000 . "" . $item;
+
+            $user = User::where(['id' => $item])->first();
+
+            if (!is_null($user)) {
+                $name = $user->name;
+            }
+
+            $db = new DbHelpers();
+//            $db->curlRequest();
+//            $db->curlRequestDispatch();
+
+            $duplicate = $db->checkDuplicate($contact);
+
+            if (is_null($duplicate)) {
+                $insertData[] = [
+                    'uid' => "uid" . $item,
+                    'contact' => $contact
+                ];
+            }
+
+        }
+        return $insertData;
+        $db = new DbHelpers();
+        $db->insert($insertData);
+    }
+
+    public static function dispatchRunner(array $globalContact = [], array $itemsData = [], $batch)
     {
         $insertData = [];
 //
