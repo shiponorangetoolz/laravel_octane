@@ -118,8 +118,7 @@ class PostController extends Controller
                     ],
                     'callbacks' => [
                         'task' => function ($config, $workerId, $task) use ($globalContact) {
-                            $res = Helpers::runner($globalContact, $task, "First Worker");
-                            Log::info('$res data', [$res]);
+                           Helpers::runner($globalContact, $task, "First Worker");
                         },
                     ],
                 ]);
