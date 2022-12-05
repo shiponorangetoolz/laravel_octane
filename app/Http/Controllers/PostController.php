@@ -79,7 +79,7 @@ class PostController extends Controller
     public static function dispatcher()
     {
         $itemArray = [];
-        $globalContact = [1, 2, 3];
+        $globalContact = [];
 
 
         echo "Start" . Carbon::now()->format('Y-m-d H:i:s');
