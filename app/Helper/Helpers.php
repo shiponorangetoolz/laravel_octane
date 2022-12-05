@@ -41,7 +41,6 @@ class Helpers
             }
 
         }
-        return $insertData;
         $db = new DbHelpers();
         $db->insert($insertData);
     }
